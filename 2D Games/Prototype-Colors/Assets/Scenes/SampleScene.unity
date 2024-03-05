@@ -357,7 +357,7 @@ MonoBehaviour:
   SpeedPlayer: 5
   MultiplySpeed: 1.5
   JumpMultiply: 5
-  JumpMultiply2: 3
+  JumpMultiply2: 4.5
   Jump: 0
   rb: {fileID: 451177082}
   CheckGroundPosition: {fileID: 405497834}
