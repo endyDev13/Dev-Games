@@ -16,9 +16,11 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] bool jump = false;
     [SerializeField] Transform player;
 
+    [SerializeField] bool canIdle = true;
+    [SerializeField] bool canSleep = false;
 
-    // Start is called before the first frame update
-    void Start()
+// Start is called before the first frame update
+void Start()
     {
 
     }
@@ -27,7 +29,6 @@ public class PlayerMoves : MonoBehaviour
     void Update()
     {
         move();
-
 
     }
 
@@ -40,10 +41,17 @@ public class PlayerMoves : MonoBehaviour
         if (Physics2D.OverlapCircle(pointJump.position, radiusCircle, solo))
         {
             jump = true;
+            if (canSleep == false)
+            {
+                canIdle = true;
+            }
+            
         }
         else
         {
             jump = false;
+            canIdle = false;
+
         }
 
         if (jump == true && Input.GetButtonDown("Jump"))
@@ -58,7 +66,21 @@ public class PlayerMoves : MonoBehaviour
 
         if (xInput != 0)
         {
+            anim.Play("walk");
+            canSleep = false;
 
+        }
+        if (xInput == 0 && canIdle == true)
+        {
+            anim.Play("idle");
+            StartCoroutine(Sleep());
+
+            IEnumerator Sleep()
+            {
+                yield return new WaitForSeconds(3.0f);
+                canSleep = true;
+                canIdle = false;
+            }
         }
         if (xInput > 0)
         {
@@ -66,8 +88,12 @@ public class PlayerMoves : MonoBehaviour
         }
         if (xInput < 0)
         {
-            player.rotation = Quaternion.Euler(0,0,0);
+            player.rotation = Quaternion.Euler(0, 0, 0);
         }
 
+        if (canSleep == true)
+        {
+            anim.Play("sleep");
+        }
     }
 }

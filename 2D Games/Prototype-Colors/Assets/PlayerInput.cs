@@ -13,7 +13,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform CheckGroundPosition;
     [SerializeField] LayerMask chao;
+    [SerializeField] Animator anim;
 
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,7 @@ public class PlayerInput : MonoBehaviour
     {
         Moviment();
         jumpPlayer();
-  
+
     }
 
     void Moviment()
@@ -44,6 +46,11 @@ public class PlayerInput : MonoBehaviour
         else
         {
             Jump = false;
+        }
+
+        if (xInput != 0)
+        {
+            anim.
         }
     }
 

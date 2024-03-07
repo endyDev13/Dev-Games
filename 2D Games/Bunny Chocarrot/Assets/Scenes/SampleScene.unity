@@ -370,10 +370,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rb: {fileID: 99294483}
-  radiusCircle: 0.1
+  radiusCircle: 0.3
   anim: {fileID: 99294486}
   jump: 0
   player: {fileID: 99294481}
+  canIdle: 1
+  canSleep: 1
 --- !u!95 &99294486
 Animator:
   serializedVersion: 5
