@@ -19,8 +19,14 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] bool canIdle = true;
     [SerializeField] bool canSleep = false;
 
-// Start is called before the first frame update
-void Start()
+
+    [SerializeField] Transform[] checkpoinAtual;
+    public int checkpointValue;
+
+    [SerializeField] ManageLvl manageLvl;
+
+    // Start is called before the first frame update
+    void Start()
     {
 
     }
@@ -29,6 +35,7 @@ void Start()
     void Update()
     {
         move();
+        respawn();
 
     }
 
@@ -45,7 +52,7 @@ void Start()
             {
                 canIdle = true;
             }
-            
+
         }
         else
         {
@@ -96,4 +103,14 @@ void Start()
             anim.Play("sleep");
         }
     }
+
+    void respawn()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.transform.position = checkpoinAtual[checkpointValue - 1].position;
+        }
+    }
+
+    
 }
